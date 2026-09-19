@@ -1,0 +1,10 @@
+{
+  "name": "partner-crm-final",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "stress": "node server.js --stress",
+    "test": "node --test"
+  }
+}

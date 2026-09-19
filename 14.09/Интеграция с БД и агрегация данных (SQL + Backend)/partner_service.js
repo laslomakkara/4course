@@ -7,6 +7,18 @@ const { calculatePartnerDiscount } = require(path.join(
   'calculate_partner_discount',
 ));
 
+function executeTransaction(database, callback) {
+  database.exec('BEGIN');
+
+  try {
+    callback();
+    database.exec('COMMIT');
+  } catch (error) {
+    database.exec('ROLLBACK');
+    throw error;
+  }
+}
+
 function createPartnerService(database) {
   function initializeDatabase() {
     database.exec(`
@@ -44,7 +56,7 @@ function createPartnerService(database) {
       VALUES (?, ?, ?)
     `);
 
-    database.transaction(() => {
+    executeTransaction(database, () => {
       insertPartner.run(1, 'ООО "Тмыв денег"', 'tmyv@example.com', '+7 223 322 22 32', 'Директор', 10);
       insertPartner.run(2, 'ООО "Зарплата пришла"', 'salary@example.com', '+7 223 322 22 32', 'Директор', 9);
       insertPartner.run(3, 'ИП Павлюченко', 'pavlyuchenko@example.com', '+7 223 322 22 32', 'Директор', 8);
@@ -53,7 +65,7 @@ function createPartnerService(database) {
       insertSale.run(2, 2, 12_000);
       insertSale.run(3, 2, 3_000);
       insertSale.run(4, 3, 350_000);
-    })();
+    });
   }
 
   function getPartnerSalesVolume(partnerId) {
@@ -135,4 +147,4 @@ function openPartnerDatabase(filePath) {
   return { database, service };
 }
 
-module.exports = { createPartnerService, openPartnerDatabase };
+module.exports = { createPartnerService, executeTransaction, openPartnerDatabase };
