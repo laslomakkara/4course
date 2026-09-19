@@ -62,23 +62,27 @@ h1 {
 .partner-icon {
   flex: 0 0 58px;
   width: 58px;
+  height: 58px;
   margin-right: 26px;
-  font-size: 53px;
+  padding-top: 19px;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 17px;
   font-weight: 700;
-  line-height: 0.8;
+  line-height: 1;
   text-align: center;
 }
 
-.partner-icon--orange {
-  color: #f29932;
+.partner-icon--blue {
+  background: #1769aa;
 }
 
-.partner-icon--violet {
-  color: #8137af;
+.partner-icon--green {
+  background: #247a57;
 }
 
-.partner-icon--yellow {
-  color: #f5b83d;
+.partner-icon--purple {
+  background: #7444a6;
 }
 
 .partner-card h2 {
@@ -140,8 +144,10 @@ h1 {
   .partner-icon {
     flex-basis: 38px;
     width: 38px;
+    height: 38px;
     margin-right: 12px;
-    font-size: 36px;
+    padding-top: 12px;
+    font-size: 12px;
   }
 
   .partner-card h2 {
