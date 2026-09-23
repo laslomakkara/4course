@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM: Карточка партнера [Добавление]</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="application">
+      <section class="partner-edit-window" aria-labelledby="window-title">
+        <header class="window-header">
+          <div>
+            <p class="window-caption">PartnerEditWindow</p>
+            <h1 id="window-title">Карточка партнера</h1>
+          </div>
+          <button class="button" id="back-button" type="button">Назад</button>
+        </header>
+
+        <form class="partner-form" id="partner-form">
+          <label>
+            Наименование
+            <input name="name" type="text" required placeholder="ООО «Новый партнер»" />
+          </label>
+
+          <label>
+            Тип партнера
+            <select id="partner-type" name="partnerType" required></select>
+          </label>
+
+          <label>
+            Рейтинг
+            <input name="rating" type="number" min="0" step="1" required placeholder="0" />
+          </label>
+
+          <label>
+            Адрес
+            <input name="address" type="text" required placeholder="г. Москва, ул. Пример, д. 1" />
+          </label>
+
+          <label>
+            ФИО директора
+            <input name="director" type="text" required placeholder="Иванов Иван Иванович" />
+          </label>
+
+          <label>
+            Телефон
+            <input
+              name="phone"
+              type="tel"
+              required
+              placeholder="+7 900 000-00-00"
+              title="Введите номер в формате +7 900 000-00-00"
+              aria-describedby="phone-hint"
+            />
+            <small id="phone-hint">Формат: +7 900 000-00-00</small>
+          </label>
+
+          <label>
+            Email компании
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="company@example.com"
+              title="Введите email, например company@example.com"
+              aria-describedby="email-hint"
+            />
+            <small id="email-hint">Пример: company@example.com</small>
+          </label>
+
+          <div class="form-actions">
+            <button class="button" type="reset">Очистить</button>
+            <button class="button button--primary" type="submit">Сохранить</button>
+          </div>
+          <p class="form-status" id="form-status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+    <script src="partner_form.js"></script>
+  </body>
+</html>
