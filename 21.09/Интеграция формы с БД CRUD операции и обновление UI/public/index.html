@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM: Реестр партнеров</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="application">
+      <section id="main-window">
+        <header class="window-header">
+          <div>
+            <p class="caption">MainWindow</p>
+            <h1>Реестр партнеров</h1>
+          </div>
+          <button class="button button--primary" id="add-button" type="button">Добавить партнера</button>
+        </header>
+        <div class="partner-list" id="partner-list"></div>
+      </section>
+
+      <section id="partner-edit-window" hidden>
+        <header class="window-header">
+          <div>
+            <p class="caption">PartnerEditWindow</p>
+            <h1 id="form-title">Новый партнер</h1>
+          </div>
+          <button class="button" id="cancel-button" type="button">Отмена</button>
+        </header>
+        <form class="partner-form" id="partner-form">
+          <label>Наименование<input name="name" required /></label>
+          <label>Тип партнера<select name="partnerType" id="partner-type" required></select></label>
+          <label>Рейтинг<input name="rating" type="number" min="0" step="1" required /></label>
+          <label>Адрес<input name="address" required /></label>
+          <label>ФИО директора<input name="director" required /></label>
+          <label>Телефон<input name="phone" type="tel" required placeholder="+7 900 000-00-00" /></label>
+          <label>Email компании<input name="email" type="email" required placeholder="company@example.com" /></label>
+          <div class="form-actions">
+            <button class="button button--primary" type="submit">Сохранить</button>
+          </div>
+          <p class="form-error" id="form-error" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
