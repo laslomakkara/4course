@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM: Реестр партнеров</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="application">
+      <section id="main-window">
+        <header class="window-header">
+          <div>
+            <p class="caption">MainWindow</p>
+            <h1>Реестр партнеров</h1>
+          </div>
+          <button class="button button--primary" id="add-button" type="button">Добавить партнера</button>
+        </header>
+        <div class="partner-list" id="partner-list"></div>
+      </section>
+
+      <section id="partner-edit-window" hidden>
+        <header class="window-header">
+          <div>
+            <p class="caption">PartnerEditWindow</p>
+            <h1 id="form-title">Новый партнер</h1>
+          </div>
+          <button class="button" id="cancel-button" type="button">Отмена</button>
+        </header>
+        <form class="partner-form" id="partner-form" novalidate>
+          <label>Наименование<input name="name" /></label>
+          <label>Тип партнера<select name="partnerType" id="partner-type"></select></label>
+          <label>Рейтинг<input name="rating" inputmode="numeric" placeholder="Например, 5" /></label>
+          <label>Адрес<input name="address" /></label>
+          <label>ФИО директора<input name="director" /></label>
+          <label>Телефон<input name="phone" type="tel" placeholder="+7 900 000-00-00" /></label>
+          <label>Email компании<input name="email" type="email" placeholder="company@example.com" /></label>
+          <div class="form-actions"><button class="button button--primary" type="submit">Сохранить</button></div>
+        </form>
+      </section>
+    </main>
+
+    <section class="modal-backdrop" id="modal-backdrop" hidden>
+      <div class="modal" role="alertdialog" aria-modal="true" aria-labelledby="modal-title">
+        <span class="modal__icon" id="modal-icon"></span>
+        <div>
+          <h2 id="modal-title"></h2>
+          <p id="modal-message"></p>
+        </div>
+        <div class="modal__actions" id="modal-actions"></div>
+      </div>
+    </section>
+
+    <script src="app.js"></script>
+  </body>
+</html>
