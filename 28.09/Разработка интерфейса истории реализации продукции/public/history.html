@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM: История реализации продукции</title>
+    <link rel="icon" href="app-icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="application">
+      <header class="application__header">
+        <img class="application__logo" src="company-logo.svg" alt="Логотип CRM" />
+        <div>
+          <p class="caption">PartnerHistoryWindow</p>
+          <h1 id="history-title">История реализации продукции</h1>
+        </div>
+      </header>
+
+      <button class="button" id="back-button" type="button">Назад к реестру</button>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Наименование продукции</th>
+              <th>Количество (шт.)</th>
+              <th>Дата продажи</th>
+            </tr>
+          </thead>
+          <tbody id="history-table-body"></tbody>
+        </table>
+      </div>
+      <p class="message" id="history-message"></p>
+    </main>
+    <script src="history.js"></script>
+  </body>
+</html>
