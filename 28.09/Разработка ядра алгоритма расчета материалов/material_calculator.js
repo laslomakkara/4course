@@ -15,7 +15,11 @@ function calculateMaterialQuantity(productTypeId, materialTypeId, quantity, para
     return -1;
   }
 
-  if (!Number.isInteger(quantity) || quantity <= 0 || param1 <= 0 || param2 <= 0) {
+  const hasInvalidQuantity = !Number.isInteger(quantity) || quantity <= 0;
+  const hasInvalidParam1 = !Number.isFinite(param1) || param1 <= 0;
+  const hasInvalidParam2 = !Number.isFinite(param2) || param2 <= 0;
+
+  if (hasInvalidQuantity || hasInvalidParam1 || hasInvalidParam2) {
     return -1;
   }
 
@@ -26,6 +30,7 @@ function calculateMaterialQuantity(productTypeId, materialTypeId, quantity, para
     return -1;
   }
 
+  // param1 и param2 задают размеры изделия, например длину и ширину.
   const baseMaterialQuantity = param1 * param2 * productCoefficient;
   const netMaterialQuantity = baseMaterialQuantity * quantity;
   const materialWithDefect = netMaterialQuantity * (1 + defectRate / 100);
@@ -33,8 +38,15 @@ function calculateMaterialQuantity(productTypeId, materialTypeId, quantity, para
   return Math.ceil(materialWithDefect);
 }
 
-module.exports = {
-  calculateMaterialQuantity,
-  materialTypeDefectRates,
-  productTypeCoefficients,
-};
+// Один модуль используется и в Node.js-тестах, и в браузерной форме.
+if (typeof module !== 'undefined') {
+  module.exports = {
+    calculateMaterialQuantity,
+    materialTypeDefectRates,
+    productTypeCoefficients,
+  };
+}
+
+if (typeof window !== 'undefined') {
+  window.calculateMaterialQuantity = calculateMaterialQuantity;
+}

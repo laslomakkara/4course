@@ -26,4 +26,5 @@ test('возвращает -1 для недопустимых параметро
   assert.equal(calculateMaterialQuantity(1, 1, 1.5, 1, 1), -1);
   assert.equal(calculateMaterialQuantity(1, 1, 1, 0, 1), -1);
   assert.equal(calculateMaterialQuantity(1, 1, 1, 1, -1), -1);
+  assert.equal(calculateMaterialQuantity(1, 1, 1, Number.NaN, 1), -1);
 });

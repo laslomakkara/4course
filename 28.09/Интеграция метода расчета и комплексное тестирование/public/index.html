@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM: Калькулятор материалов</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="application">
+      <header>
+        <p class="caption">MaterialCalculatorWindow</p>
+        <h1>Калькулятор материалов</h1>
+        <p>Введите параметры заказа, чтобы рассчитать необходимый объём сырья.</p>
+      </header>
+
+      <form id="calculator-form" class="calculator-form">
+        <label>Тип продукции
+          <select name="productTypeId">
+            <option value="1">1. Стандартный, коэффициент 1.2</option>
+            <option value="2">2. Усиленный, коэффициент 1.5</option>
+            <option value="3">3. Премиум, коэффициент 2</option>
+          </select>
+        </label>
+        <label>Тип материала
+          <select name="materialTypeId">
+            <option value="1">1. Брак 2.5%</option>
+            <option value="2">2. Брак 5%</option>
+            <option value="3">3. Брак 7.5%</option>
+          </select>
+        </label>
+        <label>Количество продукции<input name="quantity" type="number" min="1" step="1" value="10" required /></label>
+        <label>Параметр 1, например длина<input name="param1" type="number" min="0.01" step="any" value="2.5" required /></label>
+        <label>Параметр 2, например ширина<input name="param2" type="number" min="0.01" step="any" value="4" required /></label>
+        <button type="submit">Рассчитать</button>
+      </form>
+
+      <p id="result" class="result" aria-live="polite">Заполните форму и нажмите «Рассчитать».</p>
+    </main>
+    <script src="/material_calculator.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
