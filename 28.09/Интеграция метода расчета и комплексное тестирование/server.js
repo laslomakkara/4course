@@ -7,6 +7,7 @@ const { calculateMaterialQuantity } = require(path.join(
   'Разработка ядра алгоритма расчета материалов',
   'material_calculator',
 ));
+const { logError } = require('./logger');
 
 const publicDirectory = path.join(__dirname, 'public');
 
@@ -99,6 +100,7 @@ function createApplication() {
 
         sendJson(response, 200, { materialQuantity });
       } catch (error) {
+        logError(error.message);
         sendJson(response, 400, { error: error.message });
       }
 
