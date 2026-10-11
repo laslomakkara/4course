@@ -26,12 +26,12 @@ function requireRating(value) {
   return rating;
 }
 
-function addColumnIfMissing(database, columnName, definition) {
+function addColumnIfMissing(database, columnName, statement) {
   const columns = database.prepare('PRAGMA table_info(partners)').all();
   const columnExists = columns.some((column) => column.name === columnName);
 
   if (!columnExists) {
-    database.exec(`ALTER TABLE partners ADD COLUMN ${definition}`);
+    database.exec(statement);
   }
 }
 
@@ -48,11 +48,11 @@ function cleanImportedPartnerName(partnerName) {
 
 function initializeCrmSchema(database) {
   // Базовые партнёры поступают из ETL, поэтому поля CRM добавляются миграцией.
-  addColumnIfMissing(database, 'partner_type', "partner_type TEXT NOT NULL DEFAULT 'ООО'");
-  addColumnIfMissing(database, 'rating', 'rating INTEGER NOT NULL DEFAULT 0');
-  addColumnIfMissing(database, 'address', "address TEXT NOT NULL DEFAULT 'Не указан'");
-  addColumnIfMissing(database, 'director', "director TEXT NOT NULL DEFAULT 'Не указан'");
-  addColumnIfMissing(database, 'phone', "phone TEXT NOT NULL DEFAULT ''");
+  addColumnIfMissing(database, 'partner_type', "ALTER TABLE partners ADD COLUMN partner_type TEXT NOT NULL DEFAULT 'ООО'");
+  addColumnIfMissing(database, 'rating', 'ALTER TABLE partners ADD COLUMN rating INTEGER NOT NULL DEFAULT 0');
+  addColumnIfMissing(database, 'address', "ALTER TABLE partners ADD COLUMN address TEXT NOT NULL DEFAULT 'Не указан'");
+  addColumnIfMissing(database, 'director', "ALTER TABLE partners ADD COLUMN director TEXT NOT NULL DEFAULT 'Не указан'");
+  addColumnIfMissing(database, 'phone', "ALTER TABLE partners ADD COLUMN phone TEXT NOT NULL DEFAULT ''");
   const importedPartners = database.prepare("SELECT partner_id, partner_name FROM partners WHERE partner_name LIKE 'ООО %' OR partner_name LIKE 'ИП %' OR partner_name LIKE 'АО %'").all();
   const updateImportedPartner = database.prepare('UPDATE partners SET partner_type = ?, partner_name = ? WHERE partner_id = ?');
 

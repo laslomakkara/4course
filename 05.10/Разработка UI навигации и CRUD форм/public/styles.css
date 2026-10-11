@@ -173,6 +173,59 @@ h1 {
   font: inherit;
 }
 
+.message-box {
+  width: min(460px, calc(100% - 32px));
+  padding: 24px;
+  border: 0;
+  border-radius: 12px;
+  box-shadow: 0 18px 42px rgba(23, 32, 51, .25);
+}
+
+.message-box::backdrop {
+  background: rgba(23, 32, 51, .45);
+}
+
+.message-box__heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.message-box__heading h2 {
+  margin: 0;
+  font-size: 21px;
+}
+
+.message-box__icon {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.message-box--error .message-box__icon {
+  background: #b42318;
+}
+
+.message-box--warning .message-box__icon {
+  background: #b54708;
+}
+
+.message-box--information .message-box__icon {
+  background: #1769aa;
+}
+
+.message-box__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+
 .table-wrapper {
   overflow-x: auto;
 }

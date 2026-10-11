@@ -20,8 +20,13 @@
         <label>Email<input name="email" type="email" placeholder="company@example.com" required /></label>
         <button class="button button--primary" type="submit">Сохранить</button>
       </form>
-      <p id="message" class="message" aria-live="polite"></p>
+      <dialog id="message-box" class="message-box" aria-labelledby="message-box-title">
+        <div class="message-box__heading"><span id="message-box-icon" class="message-box__icon" aria-hidden="true"></span><h2 id="message-box-title"></h2></div>
+        <p id="message-box-text"></p>
+        <div class="message-box__actions"><button id="message-box-cancel" class="button" type="button" hidden></button><button id="message-box-confirm" class="button button--primary" type="button"></button></div>
+      </dialog>
     </main>
+    <script src="message-box.js"></script>
     <script src="edit.js"></script>
   </body>
 </html>

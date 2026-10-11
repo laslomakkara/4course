@@ -69,3 +69,22 @@ test('очищает префиксы, повторные кавычки, лиш
 
   closeTestDatabase(testDatabase);
 });
+
+test('сохраняет SQL-подобный текст как название и не выполняет его как запрос', () => {
+  const testDatabase = createTestDatabase();
+  const partnerName = "Тест'); DROP TABLE partners; --";
+  const createdPartner = testDatabase.service.createPartner({
+    partnerName,
+    partnerType: 'ООО',
+    rating: '0',
+    address: 'г. Казань, ул. Тестовая, д. 1',
+    director: 'Иванов Иван Иванович',
+    phone: '+7 900 000-00-00',
+    email: 'security-test@example.com',
+  });
+
+  assert.equal(createdPartner.partner_name, partnerName);
+  assert.ok(testDatabase.service.listPartners().length > 1);
+
+  closeTestDatabase(testDatabase);
+});
