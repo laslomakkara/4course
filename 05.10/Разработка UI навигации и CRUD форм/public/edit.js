@@ -2,10 +2,12 @@ const form = document.querySelector('#partner-form');
 const partnerType = document.querySelector('#partner-type');
 const pageTitle = document.querySelector('#page-title');
 const backButton = document.querySelector('#back-button');
+// ID из адресной строки определяет: открыть пустую форму или карточку выбранного партнера.
 const partnerId = new URLSearchParams(window.location.search).get('partnerId');
 let initialFormState = '';
 
 function backToMain(selectedId = partnerId) {
+  // selected возвращает выделение в реестре после сохранения или перехода назад.
   window.location.href = selectedId ? `index.html?selected=${selectedId}` : 'index.html';
 }
 

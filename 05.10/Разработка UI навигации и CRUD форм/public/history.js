@@ -1,6 +1,7 @@
 const historyList = document.querySelector('#history-list');
 const pageTitle = document.querySelector('#page-title');
 const backButton = document.querySelector('#back-button');
+// partnerId передаётся из реестра, чтобы запросить продажи только выбранного партнера.
 const partnerId = new URLSearchParams(window.location.search).get('partnerId');
 
 function createHistoryRow(sale) {

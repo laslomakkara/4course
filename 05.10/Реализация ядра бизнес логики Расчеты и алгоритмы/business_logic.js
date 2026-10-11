@@ -55,6 +55,7 @@ function calculateMaterialQuantity(database, productTypeId, materialTypeId, quan
 
   const materialQuantity = quantity * param1 * param2 * productType.coefficient * (1 + materialType.defect_rate / 100);
 
+  // Округление вверх создаёт запас материала, достаточный для целого числа изделий.
   return Math.ceil(materialQuantity);
 }
 
