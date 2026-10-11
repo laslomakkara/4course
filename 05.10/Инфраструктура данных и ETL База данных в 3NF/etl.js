@@ -26,6 +26,15 @@ function normalizeText(value) {
   return normalized.replaceAll('""', '"').trim();
 }
 
+function normalizePartnerName(value) {
+  return normalizeText(value)
+    .replace(/^[\s,;:]+/u, '')
+    .replace(/^(ООО|ИП|АО)\s+[\s.,;:]+/u, '$1 ')
+    .replace(/\s{2,}/gu, ' ')
+    .replace(/[\s,;:]+$/u, '')
+    .trim();
+}
+
 function normalizeProductName(value) {
   return normalizeText(value).replace(/"$/, '').trim();
 }
@@ -77,7 +86,7 @@ function runEtl(options = {}) {
     for (const [partnerId, partnerName, inn, email] of partnerRows) {
       const normalizedPartnerId = Number(partnerId);
 
-      insertPartner.run(normalizedPartnerId, normalizeText(partnerName), inn.trim(), email.trim());
+      insertPartner.run(normalizedPartnerId, normalizePartnerName(partnerName), inn.trim(), email.trim());
       partnerIds.add(normalizedPartnerId);
     }
 
@@ -120,4 +129,4 @@ if (require.main === module) {
   console.log(`Продаж пропущено: ${report.skippedSales}`);
 }
 
-module.exports = { normalizeDate, normalizeProductName, normalizeText, runEtl };
+module.exports = { normalizeDate, normalizePartnerName, normalizeProductName, normalizeText, runEtl };
