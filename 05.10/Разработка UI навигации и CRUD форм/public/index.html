@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRM: Реестр партнеров</title>
+    <link rel="icon" href="app-icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="application">
+      <header class="window-header">
+        <img class="logo" src="company-logo.svg" alt="Логотип CRM" />
+        <div><p class="caption">MainWindow</p><h1>Реестр партнеров</h1></div>
+        <div class="header-actions"><button id="history-button" class="button" disabled>История продаж</button><button id="edit-button" class="button" disabled>Редактировать</button><a class="button button--primary" href="edit.html">Добавить партнера</a></div>
+      </header>
+      <p class="hint">Выберите партнера. Двойной клик открывает карточку редактирования.</p>
+      <section id="partner-list" class="partner-list"></section>
+    </main>
+    <script src="main.js"></script>
+  </body>
+</html>
